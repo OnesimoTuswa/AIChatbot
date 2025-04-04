@@ -23,7 +23,7 @@ namespace AIChatbot
             Console.WriteLine("========================");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("Chatbot->:");
-            Console.WriteLine("Hello. How are you? I'm ChatBot and I am here to help you with any queries you might have regarding password safety, phishing and safe browsing."
+            DelayText("Hello. How are you? I'm ChatBot and I am here to help you with any queries you might have regarding password safety, phishing and safe browsing."
                 + "Let's start by introducing each other. What is your name?", 30);
 
             Console.WriteLine("========================");
@@ -34,7 +34,7 @@ namespace AIChatbot
             Console.WriteLine("========================");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("Chatbot->:");
-            Console.WriteLine("Hello, " + username + ", how are you?", 30);
+            DelayText("Hello, " + username + ", how are you?", 30);
 
             Console.WriteLine("========================");
             Console.ForegroundColor = ConsoleColor.Red;
@@ -44,7 +44,7 @@ namespace AIChatbot
             Console.WriteLine("========================");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("Chatbot->:");
-            Console.WriteLine("Unfortunately, I am a robot so I do not have any feelings whatsoever.", 30);
+            DelayText("Unfortunately, I am a robot so I do not have any feelings whatsoever.", 30);
             //call both methods to auto store values
             store_ignores();
             store_replies();
@@ -57,7 +57,7 @@ namespace AIChatbot
                 Console.WriteLine("========================");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("Chatbot->:");
-                Console.WriteLine("Do you have any questions? If not, you can type 'exit' to leave the application.", 30);
+                DelayText("Do you have any questions? If not, you can type 'exit' to leave the application.", 30);
 
                 Console.WriteLine("========================");
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -108,7 +108,7 @@ namespace AIChatbot
                         Console.WriteLine("========================");
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.Write("Chatbot->:");
-                        Console.WriteLine(messages, 30);
+                        DelayText(messages, 30);
                     }
                     else
                     {
@@ -116,7 +116,7 @@ namespace AIChatbot
                         Console.WriteLine("========================");
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.Write("Chatbot->:");
-                        Console.WriteLine("I'm sorry, I am not familiar with that subject. Hopefully, I will next time.", 30);
+                        DelayText("I'm sorry, I am not familiar with that subject. Hopefully, I will next time.", 30);
                     }
                 }
                 else
@@ -125,7 +125,7 @@ namespace AIChatbot
                     Console.WriteLine("========================");
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write("Chatbot->:");
-                    Console.WriteLine("Thank you for using AI Chatbot, goodbye.", 30);
+                    DelayText("Thank you for using AI Chatbot, goodbye.", 30);
                     System.Environment.Exit(0);
                 }
 
@@ -135,8 +135,17 @@ namespace AIChatbot
             } while (user_asking != "exit");
         }
 
+        private void DelayText(string text, int? customDelay = null)
+        {
+            int actualDelay = customDelay ?? delayTime;
 
-        //storing replies method
+            for (int i = 0; i < text.Length; i++)
+            {
+                Console.Write(text[i]);
+                Thread.Sleep(actualDelay);
+            }
+            Console.WriteLine();
+        }
         private void store_replies()
         {
             //store values of replies
@@ -152,8 +161,6 @@ namespace AIChatbot
             replies.Add("Phishing :A good way to protect yourself is never download attachments or click on links in unsolicited emails. Cybercriminals often disguise malware in these files.");
             replies.Add("Phishing: You can protect yourself by being cautious of emails that claim your account is at risk and demand urgent action. Verify directly with the company instead.");
         }
-
-        //ignore words method
         private void store_ignores()
         {
             //store values of ignore
