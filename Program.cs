@@ -13,15 +13,17 @@ namespace AIChatbot
     {
         static void Main(string[] args)
         {
-            //ASCII Image
-            ImageToAscii imageToAscii = new ImageToAscii();
+            //Recorded voice greeting when application launches
+            VoiceGreeting voice_greeting = new VoiceGreeting();
 
-            //Voice Greeting
-            SoundPlayer sound = new SoundPlayer(@"C:\\Year2\\SEM1\\PROG\\0330.WAV");
-            sound.PlaySync();
+            //ASCII Representation of logo
+            ImageToAscii ascii = new ImageToAscii();
 
-            //Text-Based Greeting
-            Greeting greeting = new Greeting();
+            //Welcoming the user with an interactive experience
+            Greeting welcome = new Greeting();
+
+            //Response to the user's questions
+            ResponseSystem response = new ResponseSystem();
         }
     }
-} 
+}
